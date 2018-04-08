@@ -1,0 +1,13 @@
+C:\Users\Jeff\Source\Repos\potential-invention\MyCodeCamp\MyCodeCamp\bin\Debug\netcoreapp2.0\MyCodeCamp.deps.json
+C:\Users\Jeff\Source\Repos\potential-invention\MyCodeCamp\MyCodeCamp\bin\Debug\netcoreapp2.0\MyCodeCamp.runtimeconfig.json
+C:\Users\Jeff\Source\Repos\potential-invention\MyCodeCamp\MyCodeCamp\bin\Debug\netcoreapp2.0\MyCodeCamp.runtimeconfig.dev.json
+C:\Users\Jeff\Source\Repos\potential-invention\MyCodeCamp\MyCodeCamp\bin\Debug\netcoreapp2.0\MyCodeCamp.dll
+C:\Users\Jeff\Source\Repos\potential-invention\MyCodeCamp\MyCodeCamp\obj\Debug\netcoreapp2.0\MyCodeCamp.csprojResolveAssemblyReference.cache
+C:\Users\Jeff\Source\Repos\potential-invention\MyCodeCamp\MyCodeCamp\obj\Debug\netcoreapp2.0\MyCodeCamp.csproj.CoreCompileInputs.cache
+C:\Users\Jeff\Source\Repos\potential-invention\MyCodeCamp\MyCodeCamp\obj\Debug\netcoreapp2.0\MyCodeCamp.AssemblyInfoInputs.cache
+C:\Users\Jeff\Source\Repos\potential-invention\MyCodeCamp\MyCodeCamp\obj\Debug\netcoreapp2.0\MyCodeCamp.AssemblyInfo.cs
+C:\Users\Jeff\Source\Repos\potential-invention\MyCodeCamp\MyCodeCamp\bin\Debug\netcoreapp2.0\MyCodeCamp.pdb
+C:\Users\Jeff\Source\Repos\potential-invention\MyCodeCamp\MyCodeCamp\obj\Debug\netcoreapp2.0\MyCodeCamp.dll
+C:\Users\Jeff\Source\Repos\potential-invention\MyCodeCamp\MyCodeCamp\obj\Debug\netcoreapp2.0\MyCodeCamp.pdb
+C:\Users\Jeff\Source\Repos\potential-invention\MyCodeCamp\MyCodeCamp\bin\Debug\netcoreapp2.0\MyCodeCamp.Data2.dll
+C:\Users\Jeff\Source\Repos\potential-invention\MyCodeCamp\MyCodeCamp\bin\Debug\netcoreapp2.0\MyCodeCamp.Data2.pdb
