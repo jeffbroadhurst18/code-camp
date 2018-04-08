@@ -28,20 +28,29 @@ namespace MyCodeCamp
 			//Transient - recreated everywhere it is used
 			//Singleton - one instance shared by everything during lifetime of web server
 			services.AddSingleton(_config);
-			services.AddScoped<ICampRepository, CampRepository>(); //scope = single request
 			services.AddDbContext<CampContext>(ServiceLifetime.Scoped);
-			services.AddMvc();
+			services.AddScoped<ICampRepository, CampRepository>(); //scope = single request
+			services.AddTransient<CampDbInitializer>();
+			services.AddMvc().AddJsonOptions(opt => {
+				opt.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore;
+			}); 
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env)
+        public void Configure(IApplicationBuilder app, IHostingEnvironment env,
+			CampDbInitializer seeder, ILoggerFactory loggerFactory)
         {
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
             }
 
+			loggerFactory.AddConsole(_config.GetSection("Logging"));
+			loggerFactory.AddDebug();
             app.UseMvc();
+			seeder.Seed().Wait(); //async
+
+
         }
     }
 }
