@@ -2,8 +2,10 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using AutoMapper;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
@@ -31,6 +33,9 @@ namespace MyCodeCamp
 			services.AddDbContext<CampContext>(ServiceLifetime.Scoped);
 			services.AddScoped<ICampRepository, CampRepository>(); //scope = single request
 			services.AddTransient<CampDbInitializer>();
+			services.AddAutoMapper(); //Adds IMapper as injectable type
+			services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+
 			services.AddMvc().AddJsonOptions(opt => {
 				opt.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore;
 			}); 

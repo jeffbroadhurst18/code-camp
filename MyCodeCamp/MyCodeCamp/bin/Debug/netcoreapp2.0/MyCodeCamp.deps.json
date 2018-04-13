@@ -1,7 +1,7 @@
 {
   "runtimeTarget": {
     "name": ".NETCoreApp,Version=v2.0",
-    "signature": "491f3472dbe236823ba97f549e1ea1e26cc022f5"
+    "signature": "30203d01672e43fbc6b82806b19579bd07c2d102"
   },
   "compilationOptions": {
     "defines": [
@@ -23,6 +23,8 @@
     ".NETCoreApp,Version=v2.0": {
       "MyCodeCamp/1.0.0": {
         "dependencies": {
+          "AutoMapper": "7.0.0-alpha-0001",
+          "AutoMapper.Extensions.Microsoft.DependencyInjection": "3.2.0",
           "Microsoft.AspNetCore.All": "2.0.5",
           "Microsoft.AspNetCore.Identity": "2.1.0-preview1-final",
           "Microsoft.NETCore.App": "2.0.0",
@@ -36,6 +38,31 @@
         },
         "compile": {
           "MyCodeCamp.dll": {}
+        }
+      },
+      "AutoMapper/7.0.0-alpha-0001": {
+        "dependencies": {
+          "Microsoft.CSharp": "4.4.1",
+          "System.Reflection.Emit": "4.3.0"
+        },
+        "runtime": {
+          "lib/netstandard2.0/AutoMapper.dll": {}
+        },
+        "compile": {
+          "lib/netstandard2.0/AutoMapper.dll": {}
+        }
+      },
+      "AutoMapper.Extensions.Microsoft.DependencyInjection/3.2.0": {
+        "dependencies": {
+          "AutoMapper": "7.0.0-alpha-0001",
+          "Microsoft.Extensions.DependencyInjection.Abstractions": "2.1.0-preview1-final",
+          "Microsoft.Extensions.DependencyModel": "2.0.3"
+        },
+        "runtime": {
+          "lib/netstandard2.0/AutoMapper.Extensions.Microsoft.DependencyInjection.dll": {}
+        },
+        "compile": {
+          "lib/netstandard2.0/AutoMapper.Extensions.Microsoft.DependencyInjection.dll": {}
         }
       },
       "Libuv/1.10.0": {
@@ -793,7 +820,7 @@
       },
       "Microsoft.AspNetCore.JsonPatch/2.0.0": {
         "dependencies": {
-          "Microsoft.CSharp": "4.4.0",
+          "Microsoft.CSharp": "4.4.1",
           "Newtonsoft.Json": "10.0.1"
         },
         "runtime": {
@@ -1488,7 +1515,7 @@
           "lib/netstandard1.3/Microsoft.CodeAnalysis.Workspaces.dll": {}
         }
       },
-      "Microsoft.CSharp/4.4.0": {},
+      "Microsoft.CSharp/4.4.1": {},
       "Microsoft.Data.Edm/5.8.2": {
         "runtime": {
           "lib/netstandard1.1/Microsoft.Data.Edm.dll": {}
@@ -1644,7 +1671,7 @@
       },
       "Microsoft.EntityFrameworkCore.Relational/2.0.1": {
         "dependencies": {
-          "Microsoft.CSharp": "4.4.0",
+          "Microsoft.CSharp": "4.4.1",
           "Microsoft.EntityFrameworkCore": "2.0.1",
           "Microsoft.Extensions.Configuration.Abstractions": "2.1.0-preview1-final"
         },
@@ -2457,7 +2484,7 @@
       },
       "Newtonsoft.Json/10.0.1": {
         "dependencies": {
-          "Microsoft.CSharp": "4.4.0",
+          "Microsoft.CSharp": "4.4.1",
           "System.Collections": "4.3.0",
           "System.ComponentModel.TypeConverter": "4.3.0",
           "System.Diagnostics.Debug": "4.3.0",
@@ -4331,6 +4358,20 @@
       "serviceable": false,
       "sha512": ""
     },
+    "AutoMapper/7.0.0-alpha-0001": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-27ewwAzHUMiLRMN+z0rpssVaBVkQ931YlWmdew2J5qsJBLzJ1eAydIL9hq+hPkgvk3qfok5Pp7StIGPuFOChqQ==",
+      "path": "automapper/7.0.0-alpha-0001",
+      "hashPath": "automapper.7.0.0-alpha-0001.nupkg.sha512"
+    },
+    "AutoMapper.Extensions.Microsoft.DependencyInjection/3.2.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-528nEpAwniNn8Z6Ae9qTiM/kN4f0BxmWE9mDMEkqKKGxbuElmv6Kj9DVvTXECJkIt6ARerb9+vYbOifNpcwvXQ==",
+      "path": "automapper.extensions.microsoft.dependencyinjection/3.2.0",
+      "hashPath": "automapper.extensions.microsoft.dependencyinjection.3.2.0.nupkg.sha512"
+    },
     "Libuv/1.10.0": {
       "type": "package",
       "serviceable": true,
@@ -4996,12 +5037,12 @@
       "path": "microsoft.codeanalysis.workspaces.common/2.3.1",
       "hashPath": "microsoft.codeanalysis.workspaces.common.2.3.1.nupkg.sha512"
     },
-    "Microsoft.CSharp/4.4.0": {
+    "Microsoft.CSharp/4.4.1": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-vvVR/B08YVghQ4jHEloxqw2ZWzEGE1AOA5E0DioUM3ujbXz6FD3AfB/0Jl2ohJPd0nXYGwmPe1En6HTsSriq1A==",
-      "path": "microsoft.csharp/4.4.0",
-      "hashPath": "microsoft.csharp.4.4.0.nupkg.sha512"
+      "sha512": "sha512-A5hI3gk6WpcBI0QGZY6/d5CCaYUxJgi7iENn1uYEng+Olo8RfI5ReGVkjXjeu3VR3srLvVYREATXa2M0X7FYJA==",
+      "path": "microsoft.csharp/4.4.1",
+      "hashPath": "microsoft.csharp.4.4.1.nupkg.sha512"
     },
     "Microsoft.Data.Edm/5.8.2": {
       "type": "package",

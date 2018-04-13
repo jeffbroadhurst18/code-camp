@@ -27,7 +27,12 @@ namespace MyCodeCamp.Data2
       _context.Remove(entity);
     }
 
-    public IEnumerable<Camp> GetAllCamps()
+	public void Update<T>(T entity) where T : class
+	{
+		_context.Update(entity);
+	}
+
+		public IEnumerable<Camp> GetAllCamps()
     {
       return _context.Camps
                 .Include(c => c.Location)
