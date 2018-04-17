@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using MyCodeCamp.Data2;
@@ -14,6 +15,7 @@ namespace MyCodeCamp.Controllers
 	[Produces("application/json")]
 	[Route("api/Camps")]
 	[ValidateModel]
+	[EnableCors("AnyGET")] // implement a CORS policy for whole controller
 	public class CampsController : BaseController
 	{
 		private readonly ICampRepository _repo;
@@ -61,6 +63,7 @@ namespace MyCodeCamp.Controllers
 		}
 
 		[HttpPost]
+		[EnableCors("Wildermuth")] //callers satisfying this policy can use POST
 		public async Task<IActionResult> Post([FromBody]CampModel model)
 		{
 			try
