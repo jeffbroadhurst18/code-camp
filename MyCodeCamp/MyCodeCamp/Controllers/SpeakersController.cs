@@ -22,10 +22,10 @@ namespace MyCodeCamp.Controllers
 	[ApiVersion("1.1")]
 	public class SpeakersController : BaseController
     {
-		private readonly ICampRepository _repo;
-		private readonly ILogger<SpeakersController> _logger;
-		private readonly IMapper _mapper;
-		private readonly UserManager<CampUser> _userMgr;
+		protected readonly ICampRepository _repo;
+		protected readonly ILogger<SpeakersController> _logger;
+		protected readonly IMapper _mapper;
+		protected readonly UserManager<CampUser> _userMgr;
 
 		public SpeakersController(ICampRepository repo, ILogger<SpeakersController> logger, IMapper mapper,
 			UserManager<CampUser> userMgr)
@@ -46,7 +46,7 @@ namespace MyCodeCamp.Controllers
 
 		[HttpGet]
 		[MapToApiVersion("1.1")]
-		public IActionResult Getv11(string moniker, bool includeTalks = false)
+		public virtual IActionResult GetWithCount(string moniker, bool includeTalks = false)
 		{
 			var speakers = includeTalks ? _repo.GetSpeakersByMonikerWithTalks(moniker) : _repo.GetSpeakersByMoniker(moniker);
 			return Ok(new { count = speakers.Count(), results = _mapper.Map<IEnumerable<SpeakerModel>>(speakers) });

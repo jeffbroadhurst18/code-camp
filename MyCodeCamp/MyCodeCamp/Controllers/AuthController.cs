@@ -44,7 +44,7 @@ namespace MyCodeCamp.Controllers
 
 		[HttpPost("login")]
 		[ValidateModel]
-		[EnableCors("Wildermuth")]
+		[EnableCors("Wildermuth")] //Used with cookie authentication
 		public async Task<IActionResult> Login([FromBody] CredentialModel model)
 		{
 			try

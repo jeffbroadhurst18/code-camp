@@ -112,7 +112,7 @@ namespace MyCodeCamp
 					IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_config["Tokens:Key"])),
 					ValidateLifetime = true
 				};
-			});
+			});// this tells server how to process incoming tokens
 
 			//Filters are a way of interrupting calls to individual actions.
 			//Ones defined here are applicable across all actions in project
