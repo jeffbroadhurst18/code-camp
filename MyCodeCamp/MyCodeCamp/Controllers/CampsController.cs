@@ -1,4 +1,6 @@
 ﻿using AutoMapper;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
@@ -12,10 +14,11 @@ using System.Threading.Tasks;
 
 namespace MyCodeCamp.Controllers
 {
+	[Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
 	[Produces("application/json")]
 	[Route("api/Camps")]
 	[ValidateModel]
-	[EnableCors("AnyGET")] // implement a CORS policy for whole controller
+//	[EnableCors("AnyGET")] // implement a CORS policy for whole controller
 	public class CampsController : BaseController
 	{
 		private readonly ICampRepository _repo;
@@ -64,6 +67,7 @@ namespace MyCodeCamp.Controllers
 
 		[HttpPost]
 		[EnableCors("Wildermuth")] //callers satisfying this policy can use POST
+		[Authorize(Policy = "SuperUsers")]
 		public async Task<IActionResult> Post([FromBody]CampModel model)
 		{
 			try

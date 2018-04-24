@@ -1,7 +1,7 @@
 {
   "runtimeTarget": {
     "name": ".NETCoreApp,Version=v2.0",
-    "signature": "30203d01672e43fbc6b82806b19579bd07c2d102"
+    "signature": "fd818f6b58a0b44dff9d0efb2f57b1d10a91cee2"
   },
   "compilationOptions": {
     "defines": [
@@ -27,6 +27,7 @@
           "AutoMapper.Extensions.Microsoft.DependencyInjection": "3.2.0",
           "Microsoft.AspNetCore.All": "2.0.5",
           "Microsoft.AspNetCore.Identity": "2.1.0-preview1-final",
+          "Microsoft.AspNetCore.Mvc.Versioning": "2.2.0",
           "Microsoft.NETCore.App": "2.0.0",
           "Microsoft.VisualStudio.Web.CodeGeneration.Design": "2.0.2",
           "MyCodeCamp.Data2": "1.0.0",
@@ -1055,6 +1056,17 @@
         },
         "compile": {
           "lib/netstandard2.0/Microsoft.AspNetCore.Mvc.TagHelpers.dll": {}
+        }
+      },
+      "Microsoft.AspNetCore.Mvc.Versioning/2.2.0": {
+        "dependencies": {
+          "Microsoft.AspNetCore.Mvc.Core": "2.0.2"
+        },
+        "runtime": {
+          "lib/netstandard2.0/Microsoft.AspNetCore.Mvc.Versioning.dll": {}
+        },
+        "compile": {
+          "lib/netstandard2.0/Microsoft.AspNetCore.Mvc.Versioning.dll": {}
         }
       },
       "Microsoft.AspNetCore.Mvc.ViewFeatures/2.0.2": {
@@ -4812,6 +4824,13 @@
       "sha512": "sha512-WjZZRn446ryGnC7CsTJ9QSov+NE9qa/aqtAolLTcs90/gTDb93B952Js9U5IpCr/OlzyTIk8qoqgvpA138h/mg==",
       "path": "microsoft.aspnetcore.mvc.taghelpers/2.0.2",
       "hashPath": "microsoft.aspnetcore.mvc.taghelpers.2.0.2.nupkg.sha512"
+    },
+    "Microsoft.AspNetCore.Mvc.Versioning/2.2.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-mBdGlJaOFmwTc5/bo8m3FeSjM+54be+VGqVoqke2WUapy5kKrybHLLnnB5OX2VKVHJw06k1JyXMgHpb6BBWGZQ==",
+      "path": "microsoft.aspnetcore.mvc.versioning/2.2.0",
+      "hashPath": "microsoft.aspnetcore.mvc.versioning.2.2.0.nupkg.sha512"
     },
     "Microsoft.AspNetCore.Mvc.ViewFeatures/2.0.2": {
       "type": "package",

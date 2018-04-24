@@ -3,7 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using AutoMapper;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using MyCodeCamp.Data2;
@@ -13,28 +15,42 @@ using MyCodeCamp.Models;
 
 namespace MyCodeCamp.Controllers
 {
-    [Produces("application/json")]
+	[Produces("application/json")]
     [Route("api/camps/{moniker}/speakers")]
 	[ValidateModel]
-    public class SpeakersController : BaseController
+	[ApiVersion("1.0")]
+	[ApiVersion("1.1")]
+	public class SpeakersController : BaseController
     {
 		private readonly ICampRepository _repo;
 		private readonly ILogger<SpeakersController> _logger;
 		private readonly IMapper _mapper;
+		private readonly UserManager<CampUser> _userMgr;
 
-		public SpeakersController(ICampRepository repo, ILogger<SpeakersController> logger, IMapper mapper)
+		public SpeakersController(ICampRepository repo, ILogger<SpeakersController> logger, IMapper mapper,
+			UserManager<CampUser> userMgr)
 		{
 			this._repo = repo;
 			this._logger = logger;
 			this._mapper = mapper;
+			this._userMgr = userMgr;
 		}
 
 		[HttpGet]
+		[MapToApiVersion("1.0")]
 		public IActionResult Get(string moniker,bool includeTalks = false)
 		{
 			var speakers = includeTalks ? _repo.GetSpeakersByMonikerWithTalks(moniker) : _repo.GetSpeakersByMoniker(moniker);
 			return Ok(_mapper.Map<IEnumerable<SpeakerModel>>(speakers));
 		}
+
+		[HttpGet]
+		[MapToApiVersion("1.1")]
+		public IActionResult Getv11(string moniker, bool includeTalks = false)
+		{
+			var speakers = includeTalks ? _repo.GetSpeakersByMonikerWithTalks(moniker) : _repo.GetSpeakersByMoniker(moniker);
+			return Ok(new { count = speakers.Count(), results = _mapper.Map<IEnumerable<SpeakerModel>>(speakers) });
+		}  
 
 		[HttpGet("{id}", Name = "SpeakerGet")]
 		public IActionResult Get(string moniker, int id, bool includeTalks = false)
@@ -52,6 +68,7 @@ namespace MyCodeCamp.Controllers
 		}
 
 		[HttpPost]
+		[Authorize]
 		public async Task<IActionResult> Post(string moniker, [FromBody]SpeakerModel model)
 		{
 			try
@@ -66,11 +83,17 @@ namespace MyCodeCamp.Controllers
 				var speaker = _mapper.Map<Speaker>(model);
 				speaker.Camp = camp;
 
-				_repo.Add(speaker);
-				if (await _repo.SaveAllAsync())
+				var campUser = await _userMgr.FindByNameAsync(this.User.Identity.Name);
+				if (campUser != null)
 				{
-					var url = Url.Link("SpeakerGet", new { moniker = camp.Moniker, id = speaker.Id });
-					return Created(url, _mapper.Map<SpeakerModel>(speaker));
+					speaker.User = campUser;
+
+					_repo.Add(speaker);
+					if (await _repo.SaveAllAsync())
+					{
+						var url = Url.Link("SpeakerGet", new { moniker = camp.Moniker, id = speaker.Id });
+						return Created(url, _mapper.Map<SpeakerModel>(speaker));
+					}
 				}
 			}
 			catch (Exception ex)
@@ -82,6 +105,7 @@ namespace MyCodeCamp.Controllers
 
 
 		[HttpPut("{id}")]
+		[Authorize]
 		public async Task<IActionResult> Put(string moniker, int id,[FromBody]SpeakerModel model)
 		{
 			try
@@ -95,6 +119,11 @@ namespace MyCodeCamp.Controllers
 				if (speaker.Camp.Moniker != moniker)
 				{
 					return BadRequest("Speaker isn't part of that camp");
+				}
+
+				if (speaker.User.UserName == this.User.Identity.Name) //Loggedin User
+				{
+					return Forbid(); //You can't amend speaker to anyone other than yourself.
 				}
 
 				_mapper.Map(model, speaker);//map from model to speaker
@@ -113,6 +142,7 @@ namespace MyCodeCamp.Controllers
 		}
 
 		[HttpDelete("{id}")]
+		[Authorize] //could have allow anonymous to not require authroisation
 		public async Task<IActionResult> Delete(string moniker, int id)
 		{
 			try
@@ -126,6 +156,11 @@ namespace MyCodeCamp.Controllers
 				if (speaker.Camp.Moniker != moniker)
 				{
 					return BadRequest("Speaker isn't part of that camp");
+				}
+
+				if (speaker.User.UserName == this.User.Identity.Name) //Loggedin User
+				{
+					return Forbid(); //You can't amend speaker to anyone other than yourself.
 				}
 
 				_repo.Delete(speaker);
